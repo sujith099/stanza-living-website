@@ -13,7 +13,7 @@ export interface BookingPanelProps {
   selectedDate: string;
   onDateChange: (date: string) => void;
   onScheduleVisit: () => void;
-  onBookRoom: () => void;
+  onBookRoom?: () => void;
   className?: string;
 }
 
@@ -136,15 +136,16 @@ export function BookingPanel({
             Visit
           </button>
 
-          <RoomlyButton
-            variant="lime"
-            size="sm"
-            shape="pill"
-            onClick={onBookRoom}
-            className="px-5 py-2 text-xs font-semibold"
-          >
-            Book now
-          </RoomlyButton>
+          <Link href={`/booking/${property.slug}`}>
+            <RoomlyButton
+              variant="lime"
+              size="sm"
+              shape="pill"
+              className="px-5 py-2 text-xs font-semibold"
+            >
+              Book now
+            </RoomlyButton>
+          </Link>
         </div>
       </div>
     </>

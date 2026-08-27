@@ -1,18 +1,21 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { RoomlyButton } from "@/components/ui/RoomlyButton";
 import { cn } from "@/lib/utils";
 
 export interface BookingCTAProps {
   propertyName: string;
-  onBookRoom: () => void;
+  propertySlug?: string;
+  onBookRoom?: () => void;
   onScheduleVisit: () => void;
   className?: string;
 }
 
 export function BookingCTA({
   propertyName,
+  propertySlug,
   onBookRoom,
   onScheduleVisit,
   className,
@@ -39,17 +42,18 @@ export function BookingCTA({
       </div>
 
       <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-shrink-0">
-        <RoomlyButton
-          variant="lime"
-          size="lg"
-          shape="pill"
-          withArrow
-          arrowStyle="circle"
-          onClick={onBookRoom}
-          className="text-xs sm:text-sm font-semibold shadow-xl justify-center"
-        >
-          Book this room
-        </RoomlyButton>
+        <Link href={propertySlug ? `/booking/${propertySlug}` : "/rooms"}>
+          <RoomlyButton
+            variant="lime"
+            size="lg"
+            shape="pill"
+            withArrow
+            arrowStyle="circle"
+            className="text-xs sm:text-sm font-semibold shadow-xl justify-center"
+          >
+            Book this room
+          </RoomlyButton>
+        </Link>
 
         <RoomlyButton
           variant="outline"

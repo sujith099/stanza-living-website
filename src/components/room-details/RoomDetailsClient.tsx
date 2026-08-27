@@ -25,7 +25,6 @@ import {
   BookingCTA,
   SimilarRooms,
   ScheduleVisitModal,
-  BookingModal,
   ReportListingDialog,
 } from "@/components/room-details";
 
@@ -45,7 +44,6 @@ export function RoomDetailsClient({
 
   // Modal states
   const [visitModalOpen, setVisitModalOpen] = useState(false);
-  const [bookingModalOpen, setBookingModalOpen] = useState(false);
 
   // Toast state
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -139,7 +137,7 @@ export function RoomDetailsClient({
             {/* Final Booking Decision CTA */}
             <BookingCTA
               propertyName={property.name}
-              onBookRoom={() => setBookingModalOpen(true)}
+              propertySlug={property.slug}
               onScheduleVisit={() => setVisitModalOpen(true)}
             />
 
@@ -164,7 +162,6 @@ export function RoomDetailsClient({
               selectedDate={selectedDate}
               onDateChange={setSelectedDate}
               onScheduleVisit={() => setVisitModalOpen(true)}
-              onBookRoom={() => setBookingModalOpen(true)}
             />
           </div>
         </div>
@@ -175,14 +172,6 @@ export function RoomDetailsClient({
         property={property}
         isOpen={visitModalOpen}
         onClose={() => setVisitModalOpen(false)}
-        onSuccess={showToast}
-      />
-
-      <BookingModal
-        property={property}
-        selectedDate={selectedDate}
-        isOpen={bookingModalOpen}
-        onClose={() => setBookingModalOpen(false)}
         onSuccess={showToast}
       />
 
