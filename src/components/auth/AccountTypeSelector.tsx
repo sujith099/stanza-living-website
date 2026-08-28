@@ -33,7 +33,7 @@ export function AccountTypeSelector({
           Welcome, {userName || "there"}.
         </h2>
         <p className="text-xs sm:text-sm text-roomly-muted">
-          What brings you to Roomly today?
+          What brings you to Stanza Living today?
         </p>
       </div>
 

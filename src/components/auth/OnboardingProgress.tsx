@@ -21,10 +21,10 @@ export function OnboardingProgress({
     <div className={cn("w-full flex flex-col gap-4 select-none", className)}>
       <div className="flex items-center justify-between">
         <Link href="/" className="inline-flex items-center gap-1 group">
-          <span className="font-display font-black text-xl tracking-wider text-roomly-dark">
-            ROOMLY
+          <span className="font-display font-black text-base sm:text-xl tracking-wider text-roomly-dark whitespace-nowrap">
+            STANZA LIVING
           </span>
-          <span className="text-roomly-lime font-bold text-lg group-hover:rotate-45 transition-transform">
+          <span className="text-roomly-lime font-bold text-base sm:text-lg group-hover:rotate-45 transition-transform">
             *
           </span>
         </Link>

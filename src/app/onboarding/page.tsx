@@ -55,7 +55,7 @@ export default function OnboardingPage() {
       ) : (
         <header className="max-w-4xl mx-auto w-full pb-8 flex items-center justify-between">
           <div className="font-display font-black text-xl tracking-wider text-roomly-dark">
-            ROOMLY<span className="text-roomly-lime">*</span>
+            STANZA LIVING<span className="text-roomly-lime">*</span>
           </div>
           <button
             type="button"
@@ -285,7 +285,7 @@ export default function OnboardingPage() {
 
       {/* Footer */}
       <footer className="max-w-3xl mx-auto w-full pt-8 text-center text-xs text-roomly-muted">
-        <span>Roomly Prototype · Living simplified</span>
+        <span>Stanza Living Prototype · Living simplified</span>
       </footer>
     </div>
   );

@@ -19,6 +19,7 @@ export interface StanzaSelectProps {
   onChange?: (value: string) => void;
   placeholder?: string;
   label?: string;
+  fieldLabel?: string;
   id?: string;
   name?: string;
   disabled?: boolean;
@@ -42,6 +43,7 @@ export function StanzaSelect({
   onChange,
   placeholder = "Select an option",
   label,
+  fieldLabel,
   id,
   name,
   disabled = false,
@@ -102,7 +104,12 @@ export function StanzaSelect({
       <SelectPrimitive.Root
         value={value}
         defaultValue={defaultValue}
-        onValueChange={onChange}
+        onValueChange={(val) => {
+          onChange?.(val);
+          if (searchable) {
+            setIsOpen(false);
+          }
+        }}
         disabled={disabled}
         name={name}
         open={searchable ? isOpen : undefined}
@@ -121,24 +128,44 @@ export function StanzaSelect({
             shapeClasses[shape],
             triggerClassName
           )}
-          aria-label={label || placeholder}
+          aria-label={fieldLabel || label || placeholder}
         >
-          <div className="flex items-center gap-2 truncate flex-1 mr-1 text-left">
-            {prefix && <span className="text-roomly-muted flex-shrink-0">{prefix}</span>}
-            <SelectPrimitive.Value placeholder={placeholder} />
-          </div>
+          {fieldLabel ? (
+            <div className="flex flex-col text-left flex-1 min-w-0 pointer-events-none">
+              <span className="text-[10px] uppercase tracking-wider font-semibold text-roomly-muted select-none">
+                {fieldLabel}
+              </span>
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-2 truncate flex-1 mr-1 text-left font-semibold">
+                  {prefix && <span className="text-roomly-muted flex-shrink-0">{prefix}</span>}
+                  <SelectPrimitive.Value placeholder={placeholder} />
+                </div>
+                <SelectPrimitive.Icon asChild>
+                  <ChevronDown className="w-3.5 h-3.5 text-roomly-muted group-data-[state=open]:rotate-180 transition-transform duration-200 flex-shrink-0" />
+                </SelectPrimitive.Icon>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="flex items-center gap-2 truncate flex-1 mr-1 text-left">
+                {prefix && <span className="text-roomly-muted flex-shrink-0">{prefix}</span>}
+                <SelectPrimitive.Value placeholder={placeholder} />
+              </div>
 
-          <SelectPrimitive.Icon asChild>
-            <ChevronDown className="w-3.5 h-3.5 text-roomly-muted group-data-[state=open]:rotate-180 transition-transform duration-200 flex-shrink-0" />
-          </SelectPrimitive.Icon>
+              <SelectPrimitive.Icon asChild>
+                <ChevronDown className="w-3.5 h-3.5 text-roomly-muted group-data-[state=open]:rotate-180 transition-transform duration-200 flex-shrink-0" />
+              </SelectPrimitive.Icon>
+            </>
+          )}
         </SelectPrimitive.Trigger>
 
         <SelectPrimitive.Portal>
           <SelectPrimitive.Content
+            position="popper"
             align={align}
             sideOffset={6}
             className={cn(
-              "z-50 min-w-[8rem] max-h-[22rem] overflow-hidden rounded-2xl bg-[#FDFCF8] border border-roomly-border shadow-xl",
+              "z-50 min-w-[12rem] max-h-[22rem] overflow-hidden rounded-2xl bg-[#FDFCF8] border border-roomly-border shadow-xl",
               "p-1.5 text-roomly-dark select-none",
               "data-[state=open]:animate-in data-[state=closed]:animate-out",
               "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -148,7 +175,11 @@ export function StanzaSelect({
             )}
           >
             {searchable && (
-              <div className="px-2 pt-2 pb-1">
+              <div
+                className="px-2 pt-2 pb-1"
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className="relative">
                   <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-roomly-muted pointer-events-none" />
                   <input
@@ -158,6 +189,7 @@ export function StanzaSelect({
                     placeholder={searchPlaceholder}
                     className="w-full h-10 pl-8 pr-8 rounded-lg border border-roomly-border bg-white text-sm text-roomly-dark placeholder:text-roomly-muted focus:outline-none focus:ring-2 focus:ring-roomly-green/20 focus:border-roomly-green"
                     onKeyDown={(e) => {
+                      e.stopPropagation();
                       if (e.key === "ArrowDown") {
                         e.preventDefault();
                         const firstItem = document.querySelector(

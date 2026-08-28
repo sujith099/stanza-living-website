@@ -30,7 +30,7 @@ export function DashboardMobileNav({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "lg:hidden w-full bg-[#FDFCF8] border-b border-roomly-border px-4 py-2.5 overflow-x-auto no-scrollbar select-none sticky top-14 z-20",
+        "lg:hidden w-full bg-[#FDFCF8] border-b border-roomly-border px-4 py-2.5 overflow-x-auto no-scrollbar select-none",
         className
       )}
     >

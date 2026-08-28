@@ -51,7 +51,7 @@ export function PropertyHeader({
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `${property.name} on Roomly`,
+          title: `${property.name} on Stanza Living`,
           text: `Check out ${property.name} in ${property.neighbourhood}, ${property.city}`,
           url,
         });

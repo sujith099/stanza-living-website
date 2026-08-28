@@ -26,11 +26,11 @@ export default function DashboardLayout({
 
       {/* 2. Main Body Container */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Top Header */}
-        <DashboardHeader onSignOut={() => setSignOutOpen(true)} />
-
-        {/* Mobile Horizontal Navigation Pills */}
-        <DashboardMobileNav />
+        {/* Sticky Top Header & Mobile Navigation Container */}
+        <div className="sticky top-0 z-30 bg-[#FDFCF8]">
+          <DashboardHeader onSignOut={() => setSignOutOpen(true)} />
+          <DashboardMobileNav />
+        </div>
 
         {/* Main Content Outlet */}
         <main className="flex-1 p-5 sm:p-8 lg:p-10 max-w-6xl w-full mx-auto">

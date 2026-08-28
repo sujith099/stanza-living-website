@@ -24,7 +24,7 @@ export function ResidentBenefits({ className }: ResidentBenefitsProps) {
           <h3 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-roomly-dark tracking-tight leading-tight">
             Why residents stay
             <br />
-            with Roomly.
+            with Stanza Living.
           </h3>
         </div>
       </FadeIn>

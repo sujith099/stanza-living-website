@@ -43,7 +43,7 @@ export function HumanStorySection({ className }: HumanStorySectionProps) {
         <FadeIn delay={0.2}>
           <div className="flex flex-col gap-4 text-xs sm:text-sm text-roomly-muted leading-relaxed">
             <p>
-              Roomly began as an idea around a simple question: why should discovering a place to sleep, work, and build your life in a new city feel like an adversarial puzzle?
+              Stanza Living began as an idea around a simple question: why should discovering a place to sleep, work, and build your life in a new city feel like an adversarial puzzle?
             </p>
             <p>
               We wanted to replace suspicious classified ads with high-fidelity architectural documentation, transparent pricing, verified wifi speeds, and neighbors who respect both deep work and shared dinners.

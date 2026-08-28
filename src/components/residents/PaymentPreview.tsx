@@ -96,7 +96,7 @@ export function PaymentPreview({ className }: PaymentPreviewProps) {
 
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-roomly-muted pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-roomly-green" />
-                <span>Protected by Roomly Tenant Escrow Guarantee</span>
+                <span>Protected by Stanza Living Tenant Escrow Guarantee</span>
               </div>
             </div>
           </div>

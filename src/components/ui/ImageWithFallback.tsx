@@ -32,7 +32,7 @@ export function ImageWithFallback({
           <Home className="w-5 h-5 text-roomly-green" />
         </div>
         <span className="font-display font-bold text-xs text-roomly-dark tracking-wide">
-          {fallbackTitle || "Roomly Living"}
+          {fallbackTitle || "Stanza Living"}
         </span>
         {fallbackSubtitle && (
           <span className="text-[10px] text-roomly-muted mt-0.5">

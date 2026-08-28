@@ -128,7 +128,7 @@ export function PriceBreakdown({ property, className }: PriceBreakdownProps) {
             <div className="p-3 rounded-xl bg-roomly-cream/40 border border-roomly-border/60 text-[11px] text-roomly-muted flex items-start gap-2 mt-1">
               <Info className="w-3.5 h-3.5 text-roomly-dark flex-shrink-0 mt-0.5" />
               <span>
-                Roomly deposits are held in a verified escrow account and returned
+                Stanza Living deposits are held in a verified escrow account and returned
                 within 48 hours of move-out inspection.
               </span>
             </div>

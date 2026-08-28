@@ -51,7 +51,7 @@ export function StoryHero({ onDiscoverClick, className }: StoryHeroProps) {
 
         <FadeIn delay={0.25}>
           <p className="text-sm sm:text-base lg:text-lg text-roomly-cream/80 max-w-2xl leading-relaxed pt-1">
-            Roomly started with a simple observation: finding a place to live had become harder than it needed to be.
+            Stanza Living started with a simple observation: finding a place to live had become harder than it needed to be.
           </p>
         </FadeIn>
 
@@ -66,7 +66,7 @@ export function StoryHero({ onDiscoverClick, className }: StoryHeroProps) {
               onClick={onDiscoverClick}
               className="text-xs sm:text-sm font-semibold shadow-2xl px-8 py-3.5"
             >
-              Discover Roomly
+              Discover Stanza Living
             </RoomlyButton>
           </div>
         </FadeIn>

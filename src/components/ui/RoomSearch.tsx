@@ -34,6 +34,24 @@ export function RoomSearch({
   const [roomType, setRoomType] = useState(initialValues?.roomType || "all");
   const [budget, setBudget] = useState(initialValues?.budget || "all");
 
+  React.useEffect(() => {
+    if (initialValues?.city && initialValues.city !== city) {
+      setCity(initialValues.city);
+    }
+    if (initialValues?.neighbourhood && initialValues.neighbourhood !== neighbourhood) {
+      setNeighbourhood(initialValues.neighbourhood);
+    }
+    if (initialValues?.moveIn && initialValues.moveIn !== moveIn) {
+      setMoveIn(initialValues.moveIn);
+    }
+    if (initialValues?.roomType && initialValues.roomType !== roomType) {
+      setRoomType(initialValues.roomType);
+    }
+    if (initialValues?.budget && initialValues.budget !== budget) {
+      setBudget(initialValues.budget);
+    }
+  }, [initialValues]);
+
   const availableNeighbourhoods = NEIGHBOURHOODS_BY_CITY[city] || [];
 
   const cityOptions = useMemo(() => CITIES_LIST.map((c) => ({
@@ -67,6 +85,62 @@ export function RoomSearch({
     { value: "Triple sharing", label: "Triple sharing" },
   ], []);
 
+  const handleCityChange = (newCity: string) => {
+    setCity(newCity);
+    setNeighbourhood("all");
+    onSearch?.({
+      city: newCity,
+      neighbourhood: "all",
+      moveIn,
+      roomType,
+      budget,
+    });
+  };
+
+  const handleNeighbourhoodChange = (newNeighbourhood: string) => {
+    setNeighbourhood(newNeighbourhood);
+    onSearch?.({
+      city,
+      neighbourhood: newNeighbourhood,
+      moveIn,
+      roomType,
+      budget,
+    });
+  };
+
+  const handleMoveInChange = (newMoveIn: string) => {
+    setMoveIn(newMoveIn);
+    onSearch?.({
+      city,
+      neighbourhood,
+      moveIn: newMoveIn,
+      roomType,
+      budget,
+    });
+  };
+
+  const handleBudgetChange = (newBudget: string) => {
+    setBudget(newBudget);
+    onSearch?.({
+      city,
+      neighbourhood,
+      moveIn,
+      roomType,
+      budget: newBudget,
+    });
+  };
+
+  const handleRoomTypeChange = (newRoomType: string) => {
+    setRoomType(newRoomType);
+    onSearch?.({
+      city,
+      neighbourhood,
+      moveIn,
+      roomType: newRoomType,
+      budget,
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (onSearch) {
@@ -89,21 +163,17 @@ export function RoomSearch({
       )}
     >
       {/* 1. City / Where */}
-      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 rounded-xl md:rounded-l-full transition-colors group">
-        <MapPin className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0" />
+      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 rounded-xl md:rounded-l-full transition-colors group cursor-pointer">
+        <MapPin className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0 pointer-events-none" />
         <div className="flex flex-col text-left flex-grow">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-roomly-muted">
-            Where (City)
-          </span>
           <StanzaSelect
+            id="search-city"
+            fieldLabel="Where (City)"
             options={cityOptions}
             value={city}
-            onChange={(c) => {
-              setCity(c);
-              setNeighbourhood("all");
-            }}
-            triggerClassName="border-0 shadow-none bg-transparent p-0 h-auto font-semibold text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0"
-            contentClassName="min-w-[11rem]"
+            onChange={handleCityChange}
+            triggerClassName="w-full border-0 shadow-none bg-transparent p-0 h-auto font-semibold text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0 text-left cursor-pointer"
+            contentClassName="min-w-[12rem]"
             searchable
             searchPlaceholder="Search city..."
           />
@@ -111,16 +181,15 @@ export function RoomSearch({
       </div>
 
       {/* 2. Neighbourhood */}
-      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 transition-colors group">
+      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 transition-colors group cursor-pointer">
         <div className="flex flex-col text-left flex-grow">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-roomly-muted">
-            Neighbourhood
-          </span>
           <StanzaSelect
+            id="search-neighbourhood"
+            fieldLabel="Neighbourhood"
             options={neighbourhoodOptions}
             value={neighbourhood}
-            onChange={setNeighbourhood}
-            triggerClassName="border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0"
+            onChange={handleNeighbourhoodChange}
+            triggerClassName="w-full border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0 text-left cursor-pointer"
             contentClassName="min-w-[13rem]"
             searchable
             searchPlaceholder="Search neighbourhood..."
@@ -129,51 +198,48 @@ export function RoomSearch({
       </div>
 
       {/* 3. Move-in Date */}
-      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 transition-colors group">
-        <Calendar className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0" />
+      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 transition-colors group cursor-pointer">
+        <Calendar className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0 pointer-events-none" />
         <div className="flex flex-col text-left flex-grow">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-roomly-muted">
-            Move-in
-          </span>
           <StanzaSelect
+            id="search-move-in"
+            fieldLabel="Move-in"
             options={moveInOptions}
             value={moveIn}
-            onChange={setMoveIn}
-            triggerClassName="border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0"
+            onChange={handleMoveInChange}
+            triggerClassName="w-full border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0 text-left cursor-pointer"
             contentClassName="min-w-[11rem]"
           />
         </div>
       </div>
 
       {/* 4. Budget Range */}
-      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 transition-colors group">
-        <IndianRupee className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0" />
+      <div className="flex-1 px-4 py-2 flex items-center gap-3 border-b md:border-b-0 md:border-r border-roomly-border/60 hover:bg-roomly-bg/30 transition-colors group cursor-pointer">
+        <IndianRupee className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0 pointer-events-none" />
         <div className="flex flex-col text-left flex-grow">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-roomly-muted">
-            Budget
-          </span>
           <StanzaSelect
+            id="search-budget"
+            fieldLabel="Budget"
             options={budgetOptions}
             value={budget}
-            onChange={setBudget}
-            triggerClassName="border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0"
+            onChange={handleBudgetChange}
+            triggerClassName="w-full border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0 text-left cursor-pointer"
             contentClassName="min-w-[12rem]"
           />
         </div>
       </div>
 
       {/* 5. Room Type */}
-      <div className="flex-1 px-4 py-2 flex items-center gap-3 hover:bg-roomly-bg/30 transition-colors group">
-        <Home className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0" />
+      <div className="flex-1 px-4 py-2 flex items-center gap-3 hover:bg-roomly-bg/30 transition-colors group cursor-pointer">
+        <Home className="w-4 h-4 text-roomly-muted group-hover:text-roomly-dark transition-colors flex-shrink-0 pointer-events-none" />
         <div className="flex flex-col text-left flex-grow">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-roomly-muted">
-            Room Type
-          </span>
           <StanzaSelect
+            id="search-room-type"
+            fieldLabel="Room Type"
             options={roomTypeOptions}
             value={roomType}
-            onChange={setRoomType}
-            triggerClassName="border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0"
+            onChange={handleRoomTypeChange}
+            triggerClassName="w-full border-0 shadow-none bg-transparent p-0 h-auto font-medium text-xs sm:text-sm hover:bg-transparent hover:border-0 focus:ring-0 text-left cursor-pointer"
             contentClassName="min-w-[12rem]"
           />
         </div>

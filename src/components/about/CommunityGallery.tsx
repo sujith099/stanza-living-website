@@ -23,7 +23,7 @@ export function CommunityGallery({ className }: CommunityGalleryProps) {
           </div>
 
           <h3 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-roomly-dark tracking-tight leading-tight">
-            Roomly isn&apos;t just about rooms.
+            Stanza Living isn&apos;t just about rooms.
           </h3>
           <p className="text-xs sm:text-sm text-roomly-muted max-w-md">
             It&apos;s about what happens once you unpack — morning light, quiet focus, and familiar faces.

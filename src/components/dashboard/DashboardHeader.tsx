@@ -36,17 +36,17 @@ export function DashboardHeader({ onSignOut, className }: DashboardHeaderProps) 
   return (
     <header
       className={cn(
-        "w-full bg-[#FDFCF8] border-b border-roomly-border px-5 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-30 select-none backdrop-blur-md",
+        "w-full bg-[#FDFCF8] border-b border-roomly-border px-5 sm:px-8 py-3.5 flex items-center justify-between select-none backdrop-blur-md",
         className
       )}
     >
       {/* Mobile Brand / Desktop Context */}
       <div className="flex items-center gap-3">
         <Link href="/" className="lg:hidden inline-flex items-center gap-1 group">
-          <span className="font-display font-black text-xl tracking-wider text-roomly-dark">
-            ROOMLY
+          <span className="font-display font-black text-sm sm:text-base tracking-wider text-roomly-dark whitespace-nowrap">
+            STANZA LIVING
           </span>
-          <span className="text-roomly-lime font-bold text-lg group-hover:rotate-45 transition-transform">
+          <span className="text-roomly-lime font-bold text-sm sm:text-base group-hover:rotate-45 transition-transform">
             *
           </span>
         </Link>

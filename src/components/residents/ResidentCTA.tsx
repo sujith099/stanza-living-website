@@ -27,7 +27,7 @@ export function ResidentCTA({ className }: ResidentCTAProps) {
         <h3 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
           Already living
           <br />
-          with Roomly?
+          with Stanza Living?
         </h3>
 
         <p className="text-xs sm:text-sm text-roomly-cream/70 leading-relaxed pt-1">

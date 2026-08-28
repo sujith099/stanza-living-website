@@ -66,7 +66,7 @@ export function SignupForm({ className }: SignupFormProps) {
           Let&apos;s get you started.
         </h2>
         <p className="text-xs sm:text-sm text-roomly-muted">
-          Tell us a little about yourself so Roomly can find better matches.
+          Tell us a little about yourself so Stanza Living can find better matches.
         </p>
       </div>
 
@@ -209,7 +209,7 @@ export function SignupForm({ className }: SignupFormProps) {
 
       {/* Terms & Privacy */}
       <p className="text-[11px] text-roomly-muted/80 text-center leading-relaxed">
-        By creating an account, you agree to Roomly&apos;s{" "}
+        By creating an account, you agree to Stanza Living&apos;s{" "}
         <span className="underline cursor-pointer hover:text-roomly-dark">Terms of Service</span> and{" "}
         <span className="underline cursor-pointer hover:text-roomly-dark">Privacy Policy</span>.
       </p>

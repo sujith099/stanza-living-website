@@ -31,7 +31,7 @@ export function OnboardingBudgetStep({
           What feels comfortable?
         </h2>
         <p className="text-xs sm:text-sm text-roomly-muted">
-          All Roomly rates include high-speed Wi-Fi, electricity, and weekly housekeeping.
+          All Stanza Living rates include high-speed Wi-Fi, electricity, and weekly housekeeping.
         </p>
       </div>
 

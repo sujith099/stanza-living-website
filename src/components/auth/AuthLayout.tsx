@@ -62,7 +62,7 @@ export function AuthLayout({
         {/* Bottom Quotation */}
         <div className="relative z-10 max-w-md hidden sm:flex flex-col gap-1">
           <span className="text-[11px] uppercase tracking-widest font-bold text-roomly-lime">
-            Roomly Identity
+            Stanza Living Identity
           </span>
           <p className="font-display font-bold text-2xl lg:text-3xl text-white leading-snug">
             &ldquo;{brandQuote}&rdquo;

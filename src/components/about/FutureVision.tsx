@@ -29,7 +29,7 @@ export function FutureVision({ className }: FutureVisionProps) {
         </h3>
 
         <p className="text-xs sm:text-sm lg:text-base text-roomly-cream/70 leading-relaxed pt-1">
-          Roomly is building a better way for people to discover, choose and experience where they live — from the first search to the day they feel at home.
+          Stanza Living is building a better way for people to discover, choose and experience where they live — from the first search to the day they feel at home.
         </p>
       </div>
 
